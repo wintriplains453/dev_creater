@@ -1,0 +1,23 @@
+.clickerUnitsWrapper {
+  position: absolute;
+}
+
+.clickerUnits {
+  position: absolute;
+  animation: identifier 1s forwards;
+}
+
+@keyframes identifier {
+  0%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+.clickerUnits.hidden {
+  display: none;
+}

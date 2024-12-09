@@ -1,0 +1,25 @@
+.timerIndicator {
+  position: absolute;
+  top: 10px;
+  width: 50%;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #8c8c8c;
+}
+
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background-color: #e9ad15; /* Цвет индикатора */
+  transition: width 1s ease-in-out;
+  border-radius: 5px;
+}

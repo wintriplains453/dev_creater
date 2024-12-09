@@ -1,0 +1,23 @@
+.storeActivate {
+  display: flex;
+  justify-content: center;
+  input {
+    margin: 0 10px;
+  }
+  label {
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.addStore {
+  text-align: center;
+  svg {
+    color: #fff;
+    cursor: pointer;
+    font-size: 2rem;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }  
+}
