@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { changeActive, createStoreData } from '../../store/storeData/storeSlice';
@@ -8,7 +8,11 @@ import StoreItem from '../../semantic/store-item/storeItem';
 import { IoAddSharp } from "react-icons/io5";
 import './store.scss'
 
-const Store = () => {
+interface propsData {
+  setActiveStoreItemId: React.Dispatch<React.SetStateAction<number | null>>;
+}
+
+const Store: FC<propsData> = ({setActiveStoreItemId}) => {
   const dispatch = useDispatch();
 
   const [storeElem, setStoreElem] = useState<{id: number}[]>([])
@@ -16,7 +20,18 @@ const Store = () => {
 
   const addStoreFunction = () => {
     setStoreElem((prev) => [...prev, {id: prev.length}])
-    dispatch(createStoreData({id: storeElem.length}))
+    dispatch(createStoreData({
+      id: storeElem.length,
+      title: "",
+      count: 1,
+      duration: 1000,
+      level: 0,
+      style: {
+        background: '#909090',
+        borderRadius: 0,
+        border: 'none'
+      }
+    }))
   }
 
   const switchActiveStore = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +40,7 @@ const Store = () => {
   }
 
   return (
-    <div className="Store">
+    <div className="Store"> 
       <div className='storeActivate'>
         <input 
           type='checkbox' 
@@ -36,13 +51,15 @@ const Store = () => {
         <label htmlFor='addStore'>Добавить магазин</label>        
       </div>
       <div className='addStore'>
-        {activeStore ? 
-          <>
-            {storeElem.map(item => (
-                <StoreItem key={item.id} id={item.id}/>
-            ))}        
-          </> : null
-        }
+        <div className='storeScroll'>
+          {activeStore ? 
+            <>
+              {storeElem.map(item => (
+                  <StoreItem key={item.id} id={item.id} setActiveStoreItemId={setActiveStoreItemId}/>
+              ))}        
+            </> : null
+          }          
+        </div>
         {activeStore ? <IoAddSharp onClick={addStoreFunction} /> : null}
       </div>
     </div>

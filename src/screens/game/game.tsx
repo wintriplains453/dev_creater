@@ -1,22 +1,41 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useState } from 'react';
 
-import AsidePanel from "../../components/aside-panel/aside-panel";
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
+import { startingGame } from '../../store/fieldData/fieldData';
+
 import StoreGame from "../../components/storeComponent/storeGame/storeGame";
 import ClickerButton from "../../semantic/clickerButton/clicker-button";
 
-import './home.scss'
+import './game.scss'
 import IndicatorField from '../../ui/indicator/indicatorField';
-import { useState } from 'react';
 
-const Home = () => {
+const Game = () => {
+  const dispatch = useDispatch();
+
   const activeStore = useSelector((state: RootState) => state.storeCom.active);
   const countState = useSelector((state: RootState) => state.field.count);
-  const [totalCount, setTotalCount] = useState(0)
   const timerActive = useSelector((state: RootState) => state.field.timerActive);
+
+  const [popup, setPopup] = useState(true)
+  const [totalCount, setTotalCount] = useState(countState)
+
+  const startGame = () => {
+    dispatch(startingGame(true))
+    setPopup(false)
+  }
 
   return (
     <div className="HomePage">
+      {popup ?
+        <>
+          <div className='popup'>
+            <button onClick={startGame}>Старт</button>
+          </div>
+          <div className='blackBackground'></div>  
+        </> : null
+      }
+
       <div className="mainScreen">
         {timerActive === 'Индикатор' ?
           <IndicatorField /> : null
@@ -27,9 +46,8 @@ const Home = () => {
         }
         <ClickerButton setCount={setTotalCount} count={totalCount}/>
       </div>
-      <AsidePanel />
     </div>
   );
 }
 
-export default Home;
+export default Game;

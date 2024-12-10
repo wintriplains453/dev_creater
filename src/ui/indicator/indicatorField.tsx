@@ -1,21 +1,28 @@
 import { useState, useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { startingGame } from '../../store/fieldData/fieldData';
+
 import './indicatorField.scss'
 
 const IndicatorField = () => {
+  const dispatch = useDispatch();
+  const startGameActive = useSelector((state: RootState) => state.field.startGameActive);
+
   const [seconds, setSeconds] = useState(0);
-  const [isActive, setIsActive] = useState(false);
   const [duration, setDuration] = useState(60);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
 
-    if (isActive && seconds < duration) {
+    if (startGameActive && seconds < duration) {
       interval = setInterval(() => {
         setSeconds((prevSeconds) => prevSeconds + 1);
       }, 1000);
     } else if (seconds >= duration) {
       clearInterval(interval!);
-      setIsActive(false);
+      dispatch(startingGame(false))
     }
 
     return () => {
@@ -23,19 +30,20 @@ const IndicatorField = () => {
         clearInterval(interval);
       }
     };
-  }, [isActive, seconds, duration]);
+  }, [startGameActive, seconds, duration]);
 
-  const handleStart = () => {
-    setIsActive(true);
-    setSeconds(0);
-  };
+  useEffect(() => {
+    if(startGameActive === true) {
+      dispatch(startingGame(true))
+      setSeconds(0);      
+    }
+  }, [startGameActive])
 
   const progress = (seconds / duration) * 100;
   return (
       <div className="timerIndicator">
         {/* <p>{duration - seconds} секунд осталось</p> */}
         <div className="progress" style={{ width: `${progress}%` }} />
-      <button onClick={handleStart}>Запустить</button>
     </div>
   );
 }

@@ -1,0 +1,19 @@
+.blackBackground {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($color: #000000, $alpha: .6);
+  z-index: 10;
+}
+
+.popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}

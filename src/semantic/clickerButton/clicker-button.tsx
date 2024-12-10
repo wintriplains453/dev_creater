@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { countChange } from "../../store/fieldData/fieldData";
@@ -10,7 +10,12 @@ import IUnit from "./interface-clicker";
 
 import './clicker-button.scss'
 
-const ClickerButton = () => {
+interface propsStoreGame {
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const ClickerButton: FC<propsStoreGame> = ({setCount, count}) => {
   const dispatch = useDispatch();
 
   const [units, setUnits] = useState<IUnit[]>([]);
@@ -18,7 +23,7 @@ const ClickerButton = () => {
 
   useEffect(() => {
     if(units.length > 0) {
-      dispatch(countChange(1))
+      setCount(count + 1)
     }
     // eslint-disable-next-line
   }, [units])

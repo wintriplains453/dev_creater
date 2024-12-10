@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 
 import Home from "./screens/home/Home";
+import Game from "./screens/game/game";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
+          <Route path="game" element={<Game />} />
         </Routes>
       </BrowserRouter>      
     </Provider>

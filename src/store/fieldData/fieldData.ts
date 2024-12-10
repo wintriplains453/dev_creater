@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface StoreData {
   count: number;
   timerActive: string;
+  startGameActive: boolean;
 }
 
 const initialState: StoreData = {
   count: 0,
-  timerActive: ''
+  timerActive: '',
+  startGameActive: false
 };
 
 const storeSlice = createSlice({
@@ -19,9 +21,12 @@ const storeSlice = createSlice({
     },
     timerSwitch(state, action) {
       state.timerActive = action.payload
+    },
+    startingGame(state, action) {
+      state.startGameActive = action.payload
     }
   }
 })
 
-export const {countChange, timerSwitch} = storeSlice.actions
+export const {countChange, timerSwitch, startingGame} = storeSlice.actions
 export default storeSlice.reducer

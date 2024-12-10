@@ -7,10 +7,11 @@ import InputStoreItems from '../../ui/input/inputStoreItems';
 import './storeItem.scss'
 
 interface propsStoreItem {
-  id: Number;
+  id: number;
+  setActiveStoreItemId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-const StoreItem: FC<propsStoreItem> = ({id}) => {
+const StoreItem: FC<propsStoreItem> = ({id, setActiveStoreItemId}) => {
   const dispatch = useDispatch();
 
   const [titleValue, setTitleValue] = useState('')
@@ -19,6 +20,7 @@ const StoreItem: FC<propsStoreItem> = ({id}) => {
     if(titleValue.trim().length > 0) {
       dispatch(changeActive(true))
       dispatch(activeStoreItem(id))
+      setActiveStoreItemId(id)
     }
   }
 
@@ -31,8 +33,10 @@ const StoreItem: FC<propsStoreItem> = ({id}) => {
   return (
     <div className="StoreItem" onClick={openDopPanelStore}>
       <InputStoreItems text={"Придумайте Название"} value={titleValue} setValue={setTitleValue}/>
-      <button onClick={acceptTitleStoreItem}>Применить</button>
-    </div>
+      <div>
+        <button onClick={acceptTitleStoreItem}>Применить</button>
+      </div>
+    </div> 
   );
 }
 

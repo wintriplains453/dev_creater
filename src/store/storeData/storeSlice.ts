@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface IStoreItem {
-  id: number;
-  title: ''
-}
+import {IStoreItem} from "./interface";
 
 interface StoreData {
   active: boolean;
@@ -27,20 +23,41 @@ const storeSlice = createSlice({
       state.active = action.payload
     },
     createTitle(state, action) {
-      const elem = state.storeData.find(item => item.id === action.payload.id) || null;
+      let elem = state.storeData.find(item => item.id === action.payload.id) || null;
       if(elem !== null) {
+        elem.id = action.payload.id
         elem.title = action.payload.title
+      }
+    },
+    createCount(state, action) {
+      let elem = state.storeData.find(item => item.id === action.payload.id) || null;
+      if(elem !== null) {
+        elem.count = action.payload.count
+      }
+    },
+    createDuration(state, action) {
+      let elem = state.storeData.find(item => item.id === action.payload.id) || null;
+      if(elem !== null) {
+        elem.duration = action.payload.duration
+      }
+    },
+    changeStyle(state, action) {
+      let elem = state.storeData.find(item => item.id === action.payload.id) || null;
+      if(elem !== null) {
+        elem.style = action.payload.style
       }
     },
     createStoreData(state, action) {
       state.storeData.push(action.payload)
     },
     activeStoreItem(state, action) {
-      console.log(state.storeData)
       state.selectedItem = state.storeData.find(item => item.id === action.payload) || null;
     }
   } 
 })
 
-export const {changeActive, createTitle, createStoreData, activeStoreItem} = storeSlice.actions
+export const {
+  changeActive, createTitle, createCount, changeStyle,
+  createStoreData, activeStoreItem, createDuration
+} = storeSlice.actions
 export default storeSlice.reducer
