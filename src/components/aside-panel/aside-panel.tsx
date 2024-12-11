@@ -31,6 +31,7 @@ const AsidePanel: FC<propsAsidePanel> = ({setIndicatorType}) => {
   const is_storeActive = useSelector((state: RootState) => state.storeCom.active);
   const timeDuration = useSelector((state: RootState) => state.field.fieldData.timerDuration);
   const storeData = useSelector((state: RootState) => state.storeCom.storeData);
+  const active = useSelector((state: RootState) => state.storeCom.active);
   const fieldData = useSelector((state: RootState) => state.field.fieldData);
 
   const [activeStoreItemId, setActiveStoreItemId] = useState<number | null>(null);
@@ -60,7 +61,8 @@ const AsidePanel: FC<propsAsidePanel> = ({setIndicatorType}) => {
     setCookie("paramsGame", {
       data: {
         store: storeData,
-        field: fieldData
+        field: fieldData,
+        active: active,
       }
     })
     navigate('/game');
@@ -70,14 +72,15 @@ const AsidePanel: FC<propsAsidePanel> = ({setIndicatorType}) => {
     setCookie("paramsGame", {
       data: {
         store: storeData,
-        field: fieldData
+        field: fieldData,
+        active: active,
       }
     })
     setPopUp("company")
   }
   
   return (
-    <>
+    <> 
       {popUp === "company" ?
         <>
           <PopUpCompany setPopUp={setPopUp} setCompanyId={setCompanyId}/>
@@ -102,7 +105,7 @@ const AsidePanel: FC<propsAsidePanel> = ({setIndicatorType}) => {
             data={['clicker']}
           /> 
           <Store setActiveStoreItemId={setActiveStoreItemId}/>     
-          <div>
+          <div className='settingsTimer'>
             <p>Настройка таймера</p>
             <Selector 
               defaultValue='Убрать' 
@@ -111,11 +114,13 @@ const AsidePanel: FC<propsAsidePanel> = ({setIndicatorType}) => {
               data={['Убрать', 'Индикатор', 'Таймер']}
             />
             {selectTimerType !== "Убрать" ?
-              <input 
-                type='number'
-                value={selectTimer}
-                onChange={(e) => setSelectTimer(+e.target.value)}
-              /> : null
+              <div className='timerSettingsInput'>
+                <input 
+                  type='number'
+                  value={selectTimer}
+                  onChange={(e) => setSelectTimer(+e.target.value)}
+                />
+              </div>: null
             }
 
           </div>

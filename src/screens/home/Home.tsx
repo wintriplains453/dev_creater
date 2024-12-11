@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import IndicatorField from '../../ui/indicator/indicatorField';
 
@@ -12,8 +12,6 @@ import './home.scss'
 
 
 const Home = () => {
-  const dispatch = useDispatch();
-
   const activeStore = useSelector((state: RootState) => state.storeCom.active);
   const timerActive = useSelector((state: RootState) => state.field.fieldData.timerActive);
   const timeDuration = useSelector((state: RootState) => state.field.fieldData.timerDuration);
@@ -36,10 +34,10 @@ const Home = () => {
           <IndicatorField duration={duration} setPopUpType={null} indicatorType={indicatorType}/> : null
         }
         <div className='wrapperCount'>{totalCount}</div>
+        <ClickerButton setCount={setTotalCount} count={totalCount}/>
         {activeStore === true ?
           <StoreGame setTotalCount={setTotalCount} totalCount={totalCount}/> : null
         }
-        <ClickerButton setCount={setTotalCount} count={totalCount}/>
       </div>
       <AsidePanel setIndicatorType={setIndicatorType}/>
     </div>

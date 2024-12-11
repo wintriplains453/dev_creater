@@ -1,13 +1,14 @@
 .AsidePanel {
   width: 20%;
   height: 100%;
-  background: linear-gradient(135deg, #2D3134, #1e2123);
+  background: #EEEEEE;
   padding: 5px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #fff;
+  color: #000;
+  border-radius: 0 20px 20px 0;
 }
 
 .asidePanelContent {
@@ -15,7 +16,6 @@
   align-items: center;
   flex-direction: column;
   h2 {
-    color: #fff;
     margin-bottom: 20px;
     font-weight: 400;
     letter-spacing: 3px;
@@ -32,18 +32,18 @@
 .popUpHome {
   position: absolute;
   border-radius: 5px;
+  color: #000;
   left: 50%;
   top: 30%;
   padding: 10px;
   max-width: 500px;
-  background: rgba(0, 0, 0, 0.4);
+  background: #ffffff;
   font-size: 1.1rem;
   transform: translate(-50%, -50%);
   z-index: 11;
   text-align: center;
   display: flex;
   flex-direction: column;
-  color: #fff;
   h3 {
     margin-bottom: 10px;
   }
@@ -53,9 +53,29 @@
   }
   input {
     background: transparent;
-    border-bottom: 1px solid #e1900e;
+    border-bottom: 1px solid #703BDC;
     font-size: 1.1rem;
     margin-bottom: 30px;
-    color: #fff;
+  }
+}
+
+.settingsTimer {
+  background: #F8F8F8;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 100%;
+  padding: 5px;
+}
+
+.timerSettingsInput {
+  margin: 20px 0;
+  width: 100%;
+  input {
+    background: transparent;
+    color: #703BDC;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #703BDC;
   }
 }

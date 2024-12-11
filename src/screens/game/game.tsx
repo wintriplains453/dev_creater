@@ -10,13 +10,15 @@ import IndicatorField from '../../ui/indicator/indicatorField';
 import { useCookies } from 'react-cookie';
 
 import './game.scss'
+import { useNavigate } from 'react-router-dom';
 
 const Game = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigate()
 
   const [cookies] = useCookies(['paramsGame']);
   const dataGames = cookies.paramsGame.data
-
+  
   const [indicatorType, setIndicatorType] = useState<string>(dataGames.field.timerActive)
 
   const [popUpType, setPopUpType] = useState("default")
@@ -81,8 +83,8 @@ const Game = () => {
             <h2>Игра окончена</h2>
             <p>Ваш счет: {totalCount}</p>
             <div className='popUpEndGameContent'>
-              {/* <button className='popupBtn' onClick={retryGame}><FaArrowRotateRight /></button> */}
-              <button className='popupBtn'>Выйти</button>              
+              {/* <button className='popupBtn' onClick={retryGame}>Повторить</button> */}
+              <button className='popupBtn' onClick={() => navigation('/')}>Выйти</button>              
             </div>
 
           </div>
@@ -99,7 +101,7 @@ const Game = () => {
           /> : null
         }
         <div className='wrapperCount'>{totalCount}</div>
-        {dataGames.field.startGameActive === true ?
+        {dataGames.active === true ?
           <StoreGame setTotalCount={setTotalCount} totalCount={totalCount}/> : null
         }
         <ClickerButton setCount={setTotalCount} count={totalCount}/>

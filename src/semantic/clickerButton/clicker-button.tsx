@@ -16,10 +16,7 @@ interface propsStoreGame {
 }
 
 const ClickerButton: FC<propsStoreGame> = ({setCount, count}) => {
-  const dispatch = useDispatch();
-
   const [units, setUnits] = useState<IUnit[]>([]);
-
 
   useEffect(() => {
     if(units.length > 0) {
@@ -29,14 +26,14 @@ const ClickerButton: FC<propsStoreGame> = ({setCount, count}) => {
   }, [units])
 
   return (
-    <div>
+    <div className="wrapperClickerUnitsWrapper">
       <div className="clickerUnitsWrapper">
         {units.map((item, index) => (
           <div 
             key={index}
             className="clickerUnits"
           >
-            {index}
+            +{1}
           </div>
         ))}        
       </div>

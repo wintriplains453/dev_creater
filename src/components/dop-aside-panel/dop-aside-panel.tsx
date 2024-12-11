@@ -15,7 +15,7 @@ const DopAsidePanel: FC<propsI> = ({activeStoreItemId}) => {
 
   return (
     <div className={sizePanel === true ? "DopAsidePanelClose" : "DopAsidePanel"}>
-      <IoIosArrowDropleft className="DopAsidePanelCloser" onClick={(() => setSizePanel(!sizePanel))}/>
+      <IoIosArrowDropleft style={{color: 'grey'}} className="DopAsidePanelCloser" onClick={(() => setSizePanel(!sizePanel))}/>
       {sizePanel === false ?
         <DopStore activeStoreItemId ={activeStoreItemId}/> : null
       }

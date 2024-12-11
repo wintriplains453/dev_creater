@@ -1,21 +1,17 @@
 .StoreGame {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   padding: 10px;
-  background: #7A7A7A;
-  min-width: 400px;
-  min-height: 600px;
- 
+  background: #EEEEEE;
+  border-radius: 20px;
+  width: 60%;
+  margin-bottom: 20px;
   h2 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 10px;
   }
 }
 .StoreGameScroll {
   overflow: auto;
-  max-height: 60vh;
+  max-height: 300px;
 }
 .StoreGameScroll::-webkit-scrollbar {
   width: 0px;
@@ -28,11 +24,11 @@
 }
 
 .levelStoreItem {
-  width: 30%;
+  width: 80px;
   aspect-ratio: 1 / 1;
-  background: grey;
+  background: #CACACA;
+  border-radius: 30%;
   margin: 10px;
-  border: 1px solid rgba($color: #000000, $alpha: .2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,14 +36,14 @@
 
 .wrapperContentStoreItem {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
 }
 
 .contentStoreItem {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   p {
     margin: 5px;
@@ -64,8 +60,8 @@
 }
 .btnStoreItem {
   display: flex;
-  padding: 10px;
+  padding: 20px 30px;
   border-radius: 4px;
-  box-shadow: 2px 2px 4px rgba($color: #000000, $alpha: .35);
+  box-shadow: 1px 1px 4px rgba($color: #000000, $alpha: .35);
   cursor: pointer;
 }

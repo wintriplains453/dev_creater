@@ -29,7 +29,9 @@ const StoreGame: FC<propsStoreGame> = ({setTotalCount, totalCount}) => {
           return prevItem;
         })
       })
-      setTotalCount(totalCount - item.count)
+      if(totalCount >= item.count*item.level) {
+        setTotalCount(totalCount - (item.count*item.level))
+      }
     }
   }
 
@@ -70,7 +72,7 @@ const StoreGame: FC<propsStoreGame> = ({setTotalCount, totalCount}) => {
               </div>
               <div className='wrapperBtnStoreItem'>
                 <button onClick={() => updateLevel(item, index)} className='btnStoreItem'>
-                  <p>+{item.count}/ms</p>
+                  <p>+{item.count*item.level}/ms</p>
                 </button>
                 {totalCount >= +item.count ?
                   <FaLongArrowAltUp /> : null

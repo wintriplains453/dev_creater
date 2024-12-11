@@ -3,6 +3,7 @@
   height: 100%;
   padding: 5px;
   text-align: center;
+
 }
 
 .fieldValueDopPanel {
@@ -14,21 +15,17 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: #fff;
     p {
       margin: 0;
     }
     input {
       display: block;
       background: transparent;
-      color: #e1900e;
+      color: #703BDC;
       padding: 4px 0;
       display: flex;
       align-items: center;
       transform: translateY(2px);
     }
-  }
-  input[type="number"]::placeholder {
-    color: rgba($color: #fff, $alpha: .5);
   }
 }

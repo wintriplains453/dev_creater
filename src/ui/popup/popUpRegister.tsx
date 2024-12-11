@@ -15,7 +15,7 @@ const PopUpRegister: FC<PropsPopUp> = ({setPopUp, company_id}) => {
   
   const registerFunc = async () => {
     if(registerUser) {
-      const result = await registerUser(email, password, duplicate, company_id)
+      const result = await registerUser(email, company_id, password,  duplicate )
       console.log(result)
       setPopUp("default")      
     }

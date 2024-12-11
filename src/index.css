@@ -28,14 +28,14 @@ button, input {
 }
 
 .btn {
-  padding: 2px 15px;
+  padding: 5px 20px;
   font-size: .9rem;
   border-radius: 4px;
   cursor: pointer;
   color: #fff;
-  background: #c16f03;
+  background: #000;
   transition: .3s ease-in-out;
 }
 .btn:hover {
-  background: #e1900e;
+  background: #242424;
 }

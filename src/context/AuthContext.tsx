@@ -54,7 +54,8 @@ export const AuthProvider: FC<any> = ({ children }) => {
     })
     const data = await response.json()
 
-    if (response.status === 201){
+    if (response.status === 201 || response.status === 200){
+      localStorage.setItem("authTokens", JSON.stringify(data.token));
       return "verify"
     } else {
       return data
@@ -87,7 +88,7 @@ export const AuthProvider: FC<any> = ({ children }) => {
 
   useEffect(()=>{
     if (authTokens) {
-        setUser(jwtDecode(authTokens.access))
+      setUser(jwtDecode(authTokens))
     } 
     setLoading(false)
   }, [authTokens, loading])

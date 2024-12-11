@@ -1,5 +1,14 @@
+.wrapperClickerUnitsWrapper {
+  position: absolute;
+  top: 30%;
+}
 .clickerUnitsWrapper {
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-10px);
+  font-size: 1.3rem;
+  color: #fff;
 }
 
 .clickerUnits {
@@ -14,7 +23,7 @@
   }
   100%{
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-200px);
   }
 }
 

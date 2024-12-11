@@ -27,7 +27,7 @@ const Store: FC<propsData> = ({setActiveStoreItemId}) => {
       duration: 1000,
       level: 0,
       style: {
-        background: '#909090',
+        background: '#EEEEEE',
         borderRadius: 0,
         border: 'none'
       }

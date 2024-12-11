@@ -12,9 +12,9 @@ const PopUpCompany: FC<PropsPopUp> = ({setPopUp, setCompanyId}) => {
   const [companyName, setCompanyName] = useState<string>("")
   
   const companyFunc = async () => {
-    // const result = await createCompany(companyName)
-    // console.log(result)
-    // setCompanyId(result.comp.id)
+    const result = await createCompany(companyName)
+    console.log(result)
+    setCompanyId(result.comp.id)
     setPopUp("register")
   }
 
