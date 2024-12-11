@@ -3,14 +3,12 @@ import {IStoreItem} from "./interface";
 
 interface StoreData {
   active: boolean;
-  title: string | null;
   storeData: IStoreItem[];
   selectedItem: IStoreItem | null;
 }
 
 const initialState: StoreData = {
   active: false,
-  title: '',
   storeData: [],
   selectedItem: null,
 };
@@ -41,6 +39,12 @@ const storeSlice = createSlice({
         elem.duration = action.payload.duration
       }
     },
+    removeStoreData(state) {
+      state.storeData.map(item => {
+        item.duration = 0;
+        item.level = 0;
+      })
+    },
     changeStyle(state, action) {
       let elem = state.storeData.find(item => item.id === action.payload.id) || null;
       if(elem !== null) {
@@ -58,6 +62,6 @@ const storeSlice = createSlice({
 
 export const {
   changeActive, createTitle, createCount, changeStyle,
-  createStoreData, activeStoreItem, createDuration
+  createStoreData, activeStoreItem, createDuration, removeStoreData
 } = storeSlice.actions
 export default storeSlice.reducer

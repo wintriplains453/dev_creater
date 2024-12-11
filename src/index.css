@@ -26,3 +26,16 @@ button, input {
   outline: none;
   border: none;
 }
+
+.btn {
+  padding: 2px 15px;
+  font-size: .9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  background: #c16f03;
+  transition: .3s ease-in-out;
+}
+.btn:hover {
+  background: #e1900e;
+}

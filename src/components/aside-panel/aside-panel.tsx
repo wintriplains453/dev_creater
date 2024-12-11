@@ -1,55 +1,132 @@
-import { useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
+
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { timerDuration, timerSwitch } from '../../store/fieldData/fieldData';
 import { RootState } from '../../store/store';
 
-import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../context/AuthContext';
 
 import Selector from '../../ui/selector/selector';
 import DopAsidePanel from '../dop-aside-panel/dop-aside-panel';
-import { timerSwitch } from '../../store/fieldData/fieldData';
 
 import Store from '../storeComponent/storeComponent';
 
 import './aside_panel.scss'
+import PopUpCompany from '../../ui/popup/popUpCompany';
+import PopUpRegister from '../../ui/popup/popUpRegister';
 
-const AsidePanel = () => {
-  const is_storeActive = useSelector((state: RootState) => state.storeCom.active);
+interface propsAsidePanel {
+  setIndicatorType: React.Dispatch<React.SetStateAction<string>>;
+}
 
+const AsidePanel: FC<propsAsidePanel> = ({setIndicatorType}) => {
+  
+  const [cookies, setCookie] = useCookies(['paramsGame']);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const is_storeActive = useSelector((state: RootState) => state.storeCom.active);
+  const timeDuration = useSelector((state: RootState) => state.field.fieldData.timerDuration);
+  const storeData = useSelector((state: RootState) => state.storeCom.storeData);
+  const fieldData = useSelector((state: RootState) => state.field.fieldData);
+
   const [activeStoreItemId, setActiveStoreItemId] = useState<number | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string>("")
 
   // eslint-disable-next-line
   const [gameType, setGameType] = useState('')
-  const [timer, setTimer] = useState('')
+  const [selectTimerType, setSelectTimerType] = useState('Убрать')
+  const [selectTimer, setSelectTimer] = useState<number>(timeDuration)
+
+  const [popUp, setPopUp] = useState("default")
+  const [company_id, setCompanyId] = useState("")
 
   useEffect(() => {
-    dispatch(timerSwitch(timer))
-  }, [timer, dispatch])
+    setIndicatorType(selectedItem)
+  }, [selectedItem])
+
+  useEffect(() => {
+    dispatch(timerSwitch(selectTimerType))
+  }, [selectTimerType, dispatch])
+
+  useEffect(() => {
+    dispatch(timerDuration(selectTimer))
+  }, [selectTimer])
 
   const startGame = () => {
+    setCookie("paramsGame", {
+      data: {
+        store: storeData,
+        field: fieldData
+      }
+    })
     navigate('/game');
+  }
+
+  const saveGame = () => {
+    setCookie("paramsGame", {
+      data: {
+        store: storeData,
+        field: fieldData
+      }
+    })
+    setPopUp("company")
   }
   
   return (
     <>
+      {popUp === "company" ?
+        <>
+          <PopUpCompany setPopUp={setPopUp} setCompanyId={setCompanyId}/>
+          <div className='blackBackground' onClick={() => setPopUp("default")}></div>  
+        </> : popUp === "register" ?
+        <>
+          <PopUpRegister setPopUp={setPopUp} company_id={company_id}/>
+          <div className='blackBackground' onClick={() => setPopUp("default")}></div>  
+        </> : null
+      }
       <div className="AsidePanel">
-        {is_storeActive ?
-          <DopAsidePanel activeStoreItemId={activeStoreItemId}/> : null
-        } 
-        <h2>Панель управления</h2>
-        <Selector defaultValue='clicker' setValue={setGameType} data={['clicker']}/> 
-        <Store setActiveStoreItemId={setActiveStoreItemId}/>     
-        <div>
-          <p>Настройка таймера</p>
-          <Selector defaultValue='Убрать' setValue={setTimer} data={['Убрать', 'Индикатор']}/>
-        </div>
 
-        <p>Настройка эффектов</p>
-        <p>Настройка кнопки</p>
-        <button onClick={startGame}>Start</button>
+        <div className='asidePanelContent'>
+          {is_storeActive ?
+            <DopAsidePanel activeStoreItemId={activeStoreItemId}/> : null
+          } 
+          <h2>Панель управления</h2>
+          <Selector 
+            defaultValue='clicker' 
+            selected={setSelectedItem}
+            setValue={setGameType} 
+            data={['clicker']}
+          /> 
+          <Store setActiveStoreItemId={setActiveStoreItemId}/>     
+          <div>
+            <p>Настройка таймера</p>
+            <Selector 
+              defaultValue='Убрать' 
+              selected={setSelectedItem} 
+              setValue={setSelectTimerType} 
+              data={['Убрать', 'Индикатор', 'Таймер']}
+            />
+            {selectTimerType !== "Убрать" ?
+              <input 
+                type='number'
+                value={selectTimer}
+                onChange={(e) => setSelectTimer(+e.target.value)}
+              /> : null
+            }
+
+          </div>
+
+          <p>Настройка эффектов</p>
+          <p>Настройка кнопки</p>          
+        </div>
+        <div className='asideControlButton'>
+          <button className='btn' onClick={saveGame}>Save</button>
+          <button className='btn' onClick={startGame}>Start</button>
+        </div>
       </div>    
     </>
   );

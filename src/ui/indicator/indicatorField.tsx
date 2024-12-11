@@ -1,17 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { removeStoreData } from '../../store/storeData/storeSlice';
 import { RootState } from '../../store/store';
 import { startingGame } from '../../store/fieldData/fieldData';
 
 import './indicatorField.scss'
 
-const IndicatorField = () => {
+interface propsIndicator {
+  indicatorType: string;
+  setPopUpType: React.Dispatch<React.SetStateAction<string>> | null;
+  duration: number;
+}
+
+const IndicatorField: FC<propsIndicator> = ({indicatorType, setPopUpType, duration}) => {
   const dispatch = useDispatch();
-  const startGameActive = useSelector((state: RootState) => state.field.startGameActive);
+  const startGameActive = useSelector((state: RootState) => state.field.fieldData.startGameActive);
 
   const [seconds, setSeconds] = useState(0);
-  const [duration, setDuration] = useState(60);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
@@ -22,6 +28,10 @@ const IndicatorField = () => {
       }, 1000);
     } else if (seconds >= duration) {
       clearInterval(interval!);
+      if(setPopUpType) {
+        setPopUpType("EndGame")
+        dispatch(removeStoreData())
+      }
       dispatch(startingGame(false))
     }
 
@@ -39,11 +49,22 @@ const IndicatorField = () => {
     }
   }, [startGameActive])
 
+  // useEffect(() => {
+  //   setDuration(timeDuration)
+  // }, [duration])
+
   const progress = (seconds / duration) * 100;
   return (
-      <div className="timerIndicator">
-        {/* <p>{duration - seconds} секунд осталось</p> */}
-        <div className="progress" style={{ width: `${progress}%` }} />
+    <div className='timerField'>
+      {indicatorType === "Индикатор" ?
+        <div className="Indicator">
+          <div className="progress" style={{ width: `${progress}%` }} />
+        </div>
+      : 
+        indicatorType === "Таймер" ?
+        <p className='taimerIndicator'>{duration - seconds}</p>
+      : null
+      }
     </div>
   );
 }

@@ -1,15 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface StoreData {
-  count: number;
-  timerActive: string;
-  startGameActive: boolean;
+interface fieldData {
+  fieldData: {
+    count: number;
+    timerActive: string;
+    timerDuration: number;
+    startGameActive: boolean;    
+  }
 }
 
-const initialState: StoreData = {
-  count: 0,
-  timerActive: '',
-  startGameActive: false
+const initialState: fieldData = {
+  fieldData: {
+    count: 0,
+    timerActive: '',
+    timerDuration: 60,
+    startGameActive: false    
+  }
 };
 
 const storeSlice = createSlice({
@@ -17,16 +23,19 @@ const storeSlice = createSlice({
   initialState,
   reducers: {
     countChange(state, action) {
-      state.count += action.payload
+      state.fieldData.count += action.payload
     },
     timerSwitch(state, action) {
-      state.timerActive = action.payload
+      state.fieldData.timerActive = action.payload
+    },
+    timerDuration(state, action) {
+      state.fieldData.timerDuration = action.payload
     },
     startingGame(state, action) {
-      state.startGameActive = action.payload
+      state.fieldData.startGameActive = action.payload
     }
   }
 })
 
-export const {countChange, timerSwitch, startingGame} = storeSlice.actions
+export const {countChange, timerSwitch, startingGame, timerDuration} = storeSlice.actions
 export default storeSlice.reducer

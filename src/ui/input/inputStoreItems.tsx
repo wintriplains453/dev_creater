@@ -15,6 +15,7 @@ const InputStoreItems: FC<IPropsInput> = ({text, value, setValue}) => {
         placeholder={"Улучшение..."}
         value={value} 
         onChange={(e) => setValue(e.target.value)}
+        required
       />
     </div>
   );
