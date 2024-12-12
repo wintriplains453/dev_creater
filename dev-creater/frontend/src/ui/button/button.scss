@@ -1,0 +1,16 @@
+.buttonClicker {
+  background: #703BDC;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  font-weight: 100;
+  color: #fff;
+  padding: 30px 80px;
+  box-shadow: 0px 0px 100px rgba($color: #703BDC, $alpha: .4);
+  cursor: pointer;
+  transition: .3s ease-in-out;
+  &:hover {
+    background: #6e36dd;
+    color: #ececec;
+    transform: scale(1.1);
+  }
+}

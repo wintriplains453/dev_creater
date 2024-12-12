@@ -1,0 +1,38 @@
+.DopAsidePanel, .DopAsidePanelClose {
+  background: #EEEEEE;
+  position: absolute;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  border-right: 1px solid rgba($color: #703BDC, $alpha: .2);
+}
+.DopAsidePanelClose {
+  width: 2px;
+  left: 0;
+  transform: rotate(180deg);
+  .DopAsidePanelCloser {
+    transform: translate(-50%, -50%), rotate(90deg) !important;
+  }
+}
+
+.DopAsidePanelCloser {
+  position: absolute;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  transition: .3s;
+  &:hover {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .DopAsidePanel, .DopAsidePanelClose {
+    width: 200px;
+    left: -200px;
+  }
+}

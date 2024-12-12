@@ -1,0 +1,106 @@
+/login
+
+{
+  "email": "privet21@gmail.com",
+  "password": "ouh2ob412oi3"
+}
+
+{
+    "message": "User logged in successfully",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55X2lkIjoiNDgyYTFiZWEtYzNlNC00Yzk5LWIwZDUtZGY4OWEwZDVlZWQzIiwidXNlcl9pZCI6IjZmZWRhMzQ1LWJiNDEtNGRlNS04MTIwLTljZjc3MDdkMjQ1OSIsImlzcyI6ImV4YW1wbGVJc3N1ZXIiLCJleHAiOjE3MzQxNjgwMTB9.SwbWkgG-d9IHUTtHHUXp9rq6AOJR3KqDXtMp_NazUuY",
+    "user": {
+        "id": "6feda345-bb41-4de5-8120-9cf7707d2459",
+        "company_id": "482a1bea-c3e4-4c99-b0d5-df89a0d5eed3",
+        "email": "privet21@gmail.com",
+        "password_hash": "L/KJi1VhoV99DuRU1MIi0g6KHk6rkJ0Q/mdYflGRFKY=",
+        "salt": "w4KQgHVqWQhqysgPBdKQWw==",
+        "data": null,
+        "created_at": "",
+        "company_name": "mts"
+    }
+}
+
+
+/registration
+
+{
+  "email": "privet21@gmail.com",
+  "password": "ouh2ob412oi3",
+  "second_password": "ouh2ob412oi3",
+  "company_id": "482a1bea-c3e4-4c99-b0d5-df89a0d5eed3"
+}
+
+{
+    "message": "User registered successfully",
+    "user": {
+        "id": "1f45488a-e184-4019-bc3c-a7223f11415a",
+        "company_id": "482a1bea-c3e4-4c99-b0d5-df89a0d5eed3",
+        "email": "prive12t21@gmail.com",
+        "password_hash": "EROA0CWV5gdt5dweKb75AMk8EmOKeNmAv5e4dBtZVtM=",
+        "salt": "oUTfvMtCc/CsuL775FFnKg==",
+        "data": null,
+        "created_at": "",
+        "company": {
+            "id": "482a1bea-c3e4-4c99-b0d5-df89a0d5eed3",
+            "name": "mts",
+            "created_at": "",
+            "updated_at": ""
+        }
+    }
+}
+
+
+/create_company
+
+{
+  "name": "..."
+}
+
+{
+    "comp": {
+        "id": "12959ad1-b7e0-42e0-9812-9100839953f2",
+        "name": "...",
+        "created_at": "0001-01-01T00:00:00Z",
+        "updated_at": "0001-01-01T00:00:00Z"
+    },
+    "message": "Company created successfully"
+}
+
+
+/upload-image
+
+тут еще токен в header передавать нужно в виде:
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI...
+
+game_id: 1
+image: `file`
+
+{
+    "message": "Image uploaded successfully",
+    "url": "/uploads/company_482a1bea-c3e4-4c99-b0d5-df89a0d5eed3_game_1.jpg"
+}
+
+
+/create_or_update_game
+
+{
+    "company_id": "482a1bea-c3e4-4c99-b0d5-df89a0d5eed3",
+    "name": "gameName",
+    "data": {"data":{"store":[{"id":0,"title":"","count":1,"duration":1000,"level":0,"style":{"background":"#909090","borderRadius":0,"border":"none"}},{"id":1,"title":"","count":1,"duration":1000,"level":0,"style":{"background":"#d07c7c","borderRadius":0,"border":"none"}}],"field":{"count":0,"timerActive":"Индикатор","timerDuration":60,"startGameActive":false}}}
+}
+
+{
+    "message": "Game created or updated successfully"
+}
+
+
+/game_data
+
+{
+    "company_id": "482a1bea-c3e4-4c99-b0d5-df89a0d5eed3",
+    "name": "gameName"
+}
+
+{
+    "data": "{\"id\":\"\",\"company_id\":\"\",\"name\":\"\",\"data\":{\"store\":[{\"id\":0,\"title\":\"\",\"count\":1,\"duration\":1000,\"level\":0,\"style\":{\"background\":\"#909090\",\"borderRadius\":0,\"border\":\"none\"}},{\"id\":1,\"title\":\"\",\"count\":1,\"duration\":1000,\"level\":0,\"style\":{\"background\":\"#d07c7c\",\"borderRadius\":0,\"border\":\"none\"}}],\"field\":{\"count\":0,\"timerActive\":\"Индикатор\",\"timerDuration\":60,\"startGameActive\":false}},\"created_at\":\"\",\"updated_at\":\"\",\"company_name\":\"\"}"
+}

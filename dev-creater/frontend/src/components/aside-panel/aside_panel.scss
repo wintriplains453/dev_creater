@@ -1,0 +1,89 @@
+.AsidePanel {
+  width: 20%;
+  height: 100%;
+  background: #EEEEEE;
+  padding: 5px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #000;
+  border-radius: 0 20px 20px 0;
+}
+
+.asidePanelContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  h2 {
+    margin-bottom: 20px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-align: center;
+  }  
+}
+
+.asideControlButton {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.popUpHome {
+  position: absolute;
+  border-radius: 5px;
+  color: #000;
+  left: 50%;
+  top: 30%;
+  padding: 10px;
+  max-width: 500px;
+  background: #ffffff;
+  font-size: 1.1rem;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  h3 {
+    margin-bottom: 10px;
+  }
+  p {
+    margin: 20px 0;
+    font-weight: 100;
+  }
+  input {
+    background: transparent;
+    border-bottom: 1px solid #703BDC;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+}
+
+.settingsTimer {
+  background: #F8F8F8;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 100%;
+  padding: 5px;
+}
+
+.timerSettingsInput {
+  margin: 20px 0;
+  width: 100%;
+  input {
+    background: transparent;
+    color: #703BDC;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #703BDC;
+  }
+}
+
+.wrapperAuth {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+  align-items: center;
+}
